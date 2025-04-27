@@ -86,6 +86,9 @@
             })
             .then(response => response.text())
             .then(data => {
+                document.getElementById('souffleImage').src = '/static/souffle_vivant.png';
+document.getElementById('souffleImage').style.display = 'block';
+
                 document.getElementById('output').innerText += "\\n\\n" + data;
             })
             .catch(err => {
