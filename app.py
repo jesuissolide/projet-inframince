@@ -4,6 +4,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    # ➔ capturer l'IP du visiteur
+    visiteur_ip = request.remote_addr
+    print(f"Un visiteur est arrivé depuis l'IP : {visiteur_ip}")
+    
     return render_template('index.html')
 
 @app.route('/projection', methods=['POST'])
