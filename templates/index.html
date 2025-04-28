@@ -1,1 +1,103 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Protocole d'Inframince</title>
+    <style>
+        body {
+            background: #101010;
+            color: #ccc;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00ff99;
+        }
+        p {
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        button {
+            background-color: #00ff99;
+            color: #000;
+            padding: 0.8rem 1.6rem;
+            border: none;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00cc77;
+        }
+        #output {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #aaa;
+            text-align: center;
+            max-width: 600px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Initialisation du Traceur Vivant</h1>
+    <p>Alignement du souffle. Projection. Stabilisation cryptographique.</p>
+  <img id="souffleImage" src="" style="display:none; margin-top:2rem; max-width:300px;" />
+    <button onclick="initiateProcedure()">Exécuter le Sceau</button>
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+    <script>
+        async function initiateProcedure() {
+            if (typeof window.ethereum === 'undefined') {
+                alert('Interface Métamatérielle requise.');
+                return;
+            }
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            await provider.send("eth_requestAccounts", []);
+            const signer = provider.getSigner();
+
+            const respiration = "Traceur Inframince : " + new Date().toISOString();
+            const sceau = await signer.signMessage(respiration);
+
+            document.getElementById('output').innerText = "Sceau généré : " + sceau;
+
+            fetch('/projection', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    entité: await signer.getAddress(),
+                    flux: respiration,
+                    sceau: sceau
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('output').innerText += "\n\n" + data;
+              .then(data => {
+    document.getElementById('output').innerText += "\n\n" + data;
+    document.getElementById('souffleImage').src = '/static/souffle_vivant.png';
+    document.getElementById('souffleImage').style.display = 'block';
+})
+
+            })
+            .catch(err => {
+                document.getElementById('output').innerText += "\n\nErreur : " + err.message;
+            });
+        }
+    </script>
+
+</body>
+</html>
